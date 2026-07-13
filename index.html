@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>猴书Club — 上海年轻人的读书社群</title>
+<meta name="description" content="猴书Club是上海最有温度的读书社群，每周50+场活动，覆盖上海各区。圆桌讨论、共读、Citywalk读行——和一群有趣的人，读一本好书。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:'DM Sans',-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;color:#3C2415;background:#FEF9F0;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+/* ===== TYPOGRAPHY ===== */
+.display{font-family:'Fraunces',serif;font-weight:700;letter-spacing:-0.02em}
+.display-sm{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-0.01em}
+.eyebrow{font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.12em;color:#E8853D}
+
+/* ===== CONTAINER ===== */
+.container{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* ===== NAV ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;transition:background 0.3s,box-shadow 0.3s}
+.nav.scrolled{background:rgba(254,249,240,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(60,36,21,0.06)}
+.nav .container{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700;color:#3C2415;display:flex;align-items:center;gap:8px}
+.nav-logo .dot{width:8px;height:8px;border-radius:50%;background:#F7B32B;display:inline-block}
+.nav-cta{background:#F7B32B;color:#3C2415;padding:8px 20px;border-radius:100px;font-size:0.875rem;font-weight:600;transition:transform 0.2s,box-shadow 0.2s}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(247,179,43,0.35)}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:120px 0 80px}
+.hero-bg{position:absolute;inset:0;pointer-events:none;z-index:0}
+.hero-blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.55;animation:drift 12s ease-in-out infinite}
+.hero-blob.a{width:500px;height:500px;background:radial-gradient(circle,rgba(247,179,43,0.45),transparent);top:-15%;left:-8%;animation-delay:0s}
+.hero-blob.b{width:380px;height:380px;background:radial-gradient(circle,rgba(232,133,61,0.35),transparent);bottom:-10%;right:-5%;animation-delay:-4s}
+.hero-blob.c{width:300px;height:300px;background:radial-gradient(circle,rgba(247,179,43,0.3),transparent);top:40%;right:20%;animation-delay:-8s}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(30px,-20px) scale(1.05)}50%{transform:translate(-15px,25px) scale(0.97)}75%{transform:translate(-25px,-10px) scale(1.03)}}
+.hero .container{position:relative;z-index:1}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.7);backdrop-filter:blur(8px);padding:8px 18px;border-radius:100px;font-size:0.85rem;font-weight:500;margin-bottom:32px;border:1px solid rgba(60,36,21,0.08)}
+.hero-tag .live-dot{width:7px;height:7px;border-radius:50%;background:#1E4736;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero h1{font-size:clamp(3.2rem,8vw,5.8rem);line-height:1.05;margin-bottom:24px;color:#3C2415}
+.hero h1 .accent{color:#F7B32B;position:relative}
+.hero h1 .accent::after{content:'';position:absolute;bottom:4px;left:0;right:0;height:3px;background:#F7B32B;border-radius:2px;opacity:0.4}
+.hero-lead{font-size:clamp(1.05rem,2vw,1.25rem);color:#6B4F3A;max-width:480px;margin-bottom:40px;line-height:1.7}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{background:#F7B32B;color:#3C2415;padding:14px 32px;border-radius:100px;font-size:1rem;font-weight:600;border:none;cursor:pointer;transition:transform 0.25s,box-shadow 0.25s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(247,179,43,0.4)}
+.btn-ghost{background:transparent;color:#3C2415;padding:14px 32px;border-radius:100px;font-size:1rem;font-weight:500;border:1.5px solid rgba(60,36,21,0.15);cursor:pointer;transition:border-color 0.25s,background 0.25s}
+.btn-ghost:hover{border-color:#3C2415;background:rgba(60,36,21,0.03)}
+.hero-visual{position:absolute;right:-60px;top:50%;transform:translateY(-50%);z-index:0;opacity:0.12;pointer-events:none}
+.hero-visual .book-stack{font-size:18rem;line-height:0.75;font-family:'Fraunces',serif;font-weight:800;color:#3C2415;user-select:none;white-space:nowrap}
+
+/* ===== SECTION HEADERS ===== */
+.section-header{text-align:center;margin-bottom:64px}
+.section-header .eyebrow{margin-bottom:12px;display:block}
+.section-header h2{font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.2;color:#3C2415}
+.section-header p{color:#6B4F3A;font-size:1.05rem;margin-top:12px;max-width:500px;margin-left:auto;margin-right:auto}
+
+/* ===== ABOUT ===== */
+.about{padding:100px 0;position:relative}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.about-text h2{font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.2;margin-bottom:20px}
+.about-text p{color:#6B4F3A;font-size:1.05rem;line-height:1.8;margin-bottom:12px}
+.about-visual{position:relative}
+.about-card{background:#FDF1DC;border-radius:20px;padding:32px;position:relative;overflow:hidden}
+.about-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#F7B32B,#E8853D);border-radius:0 0 4px 4px}
+.about-stat{text-align:center}
+.about-stat .num{font-family:'Fraunces',serif;font-size:3rem;font-weight:800;color:#3C2415;line-height:1}
+.about-stat .label{color:#6B4F3A;font-size:0.9rem;margin-top:6px}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
+
+/* ===== ACTIVITIES ===== */
+.activities{padding:100px 0;background:#FDF1DC}
+.activities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.activity-card{background:#FEF9F0;border-radius:18px;padding:32px 28px;transition:transform 0.3s,box-shadow 0.3s;position:relative;overflow:hidden;cursor:default}
+.activity-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(60,36,21,0.08)}
+.activity-card .icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:18px;font-weight:700;font-family:'Fraunces',serif}
+.activity-card:nth-child(1) .icon{background:rgba(247,179,43,0.18);color:#B87A10}
+.activity-card:nth-child(2) .icon{background:rgba(30,71,54,0.12);color:#1E4736}
+.activity-card:nth-child(3) .icon{background:rgba(232,133,61,0.15);color:#C56A22}
+.activity-card:nth-child(4) .icon{background:rgba(247,179,43,0.18);color:#B87A10}
+.activity-card:nth-child(5) .icon{background:rgba(30,71,54,0.12);color:#1E4736}
+.activity-card:nth-child(6) .icon{background:rgba(232,133,61,0.15);color:#C56A22}
+.activity-card h3{font-size:1.15rem;font-weight:600;margin-bottom:8px;color:#3C2415}
+.activity-card p{color:#6B4F3A;font-size:0.9rem;line-height:1.6}
+
+/* ===== STATS BAR ===== */
+.stats-bar{padding:80px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
+.stat-item .num{font-family:'Fraunces',serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:800;color:#3C2415;line-height:1.1}
+.stat-item .num .plus{color:#F7B32B}
+.stat-item .label{color:#6B4F3A;font-size:0.95rem;margin-top:8px;line-height:1.4}
+
+/* ===== VALUES ===== */
+.values{padding:100px 0;background:#1E4736;color:#FEF9F0}
+.values .section-header h2{color:#FEF9F0}
+.values .section-header p{color:rgba(254,249,240,0.7)}
+.values .section-header .eyebrow{color:#F7B32B}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.value-card{background:rgba(255,255,255,0.06);border-radius:18px;padding:36px 28px;border:1px solid rgba(255,255,255,0.08);transition:transform 0.3s,background 0.3s}
+.value-card:hover{transform:translateY(-3px);background:rgba(255,255,255,0.1)}
+.value-card .v-icon{font-size:2rem;margin-bottom:18px;display:block}
+.value-card h3{font-size:1.15rem;font-weight:600;margin-bottom:10px;font-family:'Fraunces',serif}
+.value-card p{color:rgba(254,249,240,0.65);font-size:0.92rem;line-height:1.7}
+
+/* ===== CTA ===== */
+.cta-section{padding:100px 0;text-align:center;position:relative;overflow:hidden}
+.cta-section .hero-blob.a{top:-30%;left:-20%;width:600px;height:600px}
+.cta-section h2{font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.2;margin-bottom:16px}
+.cta-section p{color:#6B4F3A;font-size:1.05rem;max-width:460px;margin:0 auto 36px}
+.cta-qr{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;margin-bottom:32px}
+.cta-qr-placeholder{width:140px;height:140px;background:#FDF1DC;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:#6B4F3A;text-align:center;line-height:1.5;border:2px dashed rgba(60,36,21,0.1)}
+.cta-platforms{display:flex;flex-direction:column;gap:16px;text-align:left}
+.cta-platform{display:flex;align-items:center;gap:12px;font-weight:500}
+.cta-platform .pf-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.cta-platform .pf-icon.xhs{background:#FF2442;color:#fff}
+.cta-platform .pf-icon.wx{background:#07C160;color:#fff}
+
+/* ===== FOOTER ===== */
+.footer{padding:40px 0;border-top:1px solid rgba(60,36,21,0.06);text-align:center}
+.footer .nav-logo{justify-content:center;margin-bottom:12px}
+.footer p{color:#8B7562;font-size:0.85rem}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .hero{min-height:auto;padding:140px 0 60px}
+  .hero h1{font-size:2.6rem}
+  .hero-visual{display:none}
+  .hero-blob.a{width:300px;height:300px;top:-20%;left:-30%}
+  .hero-blob.b{width:250px;height:250px;bottom:-15%;right:-25%}
+  .hero-blob.c{display:none}
+  .about-grid{grid-template-columns:1fr;gap:40px}
+  .activities-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:28px}
+  .values-grid{grid-template-columns:1fr}
+  .section-header{margin-bottom:40px}
+  .about,.activities,.stats-bar,.values,.cta-section{padding:60px 0}
+}
+@media(max-width:480px){
+  .hero-actions{flex-direction:column}
+  .btn-primary,.btn-ghost{justify-content:center;text-align:center}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:24px}
+  .cta-qr{flex-direction:column;gap:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <a href="#" class="nav-logo"><span class="dot"></span>猴书Club</a>
+    <a href="#join" class="nav-cta">加入我们</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-blob a"></div>
+    <div class="hero-blob b"></div>
+    <div class="hero-blob c"></div>
+  </div>
+  <div class="hero-visual">
+    <div class="book-stack">📚</div>
+  </div>
+  <div class="container">
+    <div class="hero-tag reveal">
+      <span class="live-dot"></span> 上海 · 每周50+场活动
+    </div>
+    <h1 class="display reveal">猴书<span class="accent">Club</span></h1>
+    <p class="hero-lead reveal">和一群有趣的人，读一本好书。<br>不刷短视频，不打游戏——只用阅读连接彼此。</p>
+    <div class="hero-actions reveal">
+      <a href="#join" class="btn-primary">🐒 加入猴书Club</a>
+      <a href="#activities" class="btn-ghost">看看我们在做什么</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <span class="eyebrow">关于我们</span>
+        <h2 class="display-sm">一群年轻人，<br>用阅读重新定义社交</h2>
+        <p>我们是猴书Club——一个扎根上海的读书社群。这里没有说教、没有打卡压力，只有一群热爱阅读的年轻人聚在一起，用书本打开话题，用思考交换观点。</p>
+        <p>半年时间，从文学到历史，从哲学到经济学——系统化的阅读让每个人都能张口就来。更棒的是，你会在每一场活动里认识来自不同行业的朋友。</p>
+      </div>
+      <div class="about-visual reveal">
+        <div class="about-card">
+          <div class="about-stats">
+            <div class="about-stat">
+              <div class="num">50<span style="color:#F7B32B">+</span></div>
+              <div class="label">每周活动场次</div>
+            </div>
+            <div class="about-stat">
+              <div class="num">3000<span style="color:#F7B32B">+</span></div>
+              <div class="label">社群伙伴</div>
+            </div>
+            <div class="about-stat">
+              <div class="num">12</div>
+              <div class="label">覆盖上海各区</div>
+            </div>
+            <div class="about-stat">
+              <div class="num">180<span style="color:#F7B32B">+</span></div>
+              <div class="label">已读书目</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section class="activities" id="activities">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">活动形式</span>
+      <h2 class="display-sm">不止一种方式翻开一本书</h2>
+      <p>从围坐共读到城市漫步，总有一种适合你的节奏</p>
+    </div>
+    <div class="activities-grid">
+      <div class="activity-card reveal">
+        <div class="icon">💬</div>
+        <h3>圆桌讨论</h3>
+        <p>围绕一本书展开深度对谈，每人都有发言权，碰撞不同视角的火花。</p>
+      </div>
+      <div class="activity-card reveal">
+        <div class="icon">📖</div>
+        <h3>沉浸共读</h3>
+        <p>选一个安静角落，和大家一起埋头读书。读完即刻分享，记忆加倍深刻。</p>
+      </div>
+      <div class="activity-card reveal">
+        <div class="icon">🚶</div>
+        <h3>Citywalk 读行</h3>
+        <p>用脚步丈量城市，在街角巷尾朗读一段文字。阅读不止在书桌前发生。</p>
+      </div>
+      <div class="activity-card reveal">
+        <div class="icon">🎬</div>
+        <h3>观影聊书</h3>
+        <p>从电影聊到原著，从画面回到文字。用影像打开一本书的另一种可能。</p>
+      </div>
+      <div class="activity-card reveal">
+        <div class="icon">🎤</div>
+        <h3>主题分享会</h3>
+        <p>每个成员都可以成为主讲人。你热爱的领域，就是最好的分享素材。</p>
+      </div>
+      <div class="activity-card reveal">
+        <div class="icon">🌿</div>
+        <h3>户外读书会</h3>
+        <p>公园草坪、滨江步道——在上海最美的角落，用书本连接自然与人。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-bar" id="stats">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">我们的足迹</span>
+      <h2 class="display-sm">数字会说话</h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="num">50<span class="plus">+</span></div>
+        <div class="label">每周活动场次</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="num">12</div>
+        <div class="label">覆盖上海各区</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="num">100<span class="plus">+</span></div>
+        <div class="label">行业背景的伙伴</div>
+      </div>
+      <div class="stat-item reveal">
+        <div class="num">0</div>
+        <div class="label">评判与说教</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values" id="values">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">为什么选择我们</span>
+      <h2 class="display-sm">在这里，阅读不止是阅读</h2>
+      <p>猴书Club 不只是一个读书会——它是一个让你成长的社群</p>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <span class="v-icon">🤝</span>
+        <h3>真诚无评判</h3>
+        <p>每个观点都被尊重。不管你读了多少书、什么专业背景，这里只有平等的交流，没有居高临下的说教。</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="v-icon">🚀</span>
+        <h3>半年见成长</h3>
+        <p>系统化的阅读路径，让你半年内建立文学、历史、经济学的知识框架。不是碎片阅读，而是真正"啃"透一本书。</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="v-icon">🌐</span>
+        <h3>跨行业社交</h3>
+        <p>程序员、设计师、医生、教师、自由职业者——每一次活动都是一次跨界交流。从一本书出发，连接到意想不到的人。</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="v-icon">🎯</span>
+        <h3>自由选择</h3>
+        <p>你只参加自己感兴趣的书目。不强制、不打卡、不用社交压力。喜欢就来，每一场活动都是因为热爱而聚。</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="v-icon">🏙️</span>
+        <h3>全城覆盖</h3>
+        <p>静安、徐汇、浦东、杨浦……活动遍布上海各区。不管你在哪里，总有一场离你很近。</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="v-icon">💡</span>
+        <h3>输出倒逼输入</h3>
+        <p>每一次分享都是知识的再创造。半年后你会发现，那些你以为忘记的内容，已经变成了自己的语言。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="join">
+  <div class="hero-bg">
+    <div class="hero-blob a"></div>
+    <div class="hero-blob b"></div>
+  </div>
+  <div class="container" style="position:relative;z-index:1">
+    <div class="reveal">
+      <span class="eyebrow">加入我们</span>
+      <h2 class="display-sm">别再一个人闷头看书了</h2>
+      <p>扫码关注小红书，或者添加微信，下一场活动等你来</p>
+    </div>
+    <div class="cta-qr reveal">
+      <div class="cta-qr-placeholder">
+        小红书<br>扫码关注<br>👇
+      </div>
+      <div class="cta-platforms">
+        <div class="cta-platform">
+          <span class="pf-icon xhs">📕</span>
+          <span>小红书搜索：<strong>猴书Club</strong></span>
+        </div>
+        <div class="cta-platform">
+          <span class="pf-icon wx">💬</span>
+          <span>评论区【猴书】加入</span>
+        </div>
+      </div>
+    </div>
+    <a href="#" class="btn-primary reveal" style="margin-top:16px">🐒 马上加入猴书Club</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <a href="#" class="nav-logo"><span class="dot"></span>猴书Club</a>
+    <p>猴书 = 好书，每一本都值得认真读 · © 2026 猴书Club</p>
+  </div>
+</footer>
+
+<script>
+// Nav scroll effect
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Smooth scroll for anchor links (fallback for older browsers)
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>
