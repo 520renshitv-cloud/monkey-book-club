@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>猴书Club — 上海年轻人的读书社群</title>
-<meta name="description" content="猴书Club是上海最有温度的读书社群，每周50+场活动，覆盖上海各区。圆桌讨论、共读、Citywalk读行——和一群有趣的人，读一本好书。">
+<meta name="description" content="猴书Club是上海最有温度的读书社群，每周50+场活动。圆桌讨论、共读、Citywalk读行——和一群有趣的人，读一本好书。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -54,8 +54,6 @@ a{color:inherit;text-decoration:none}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(247,179,43,0.4)}
 .btn-ghost{background:transparent;color:#3C2415;padding:14px 32px;border-radius:100px;font-size:1rem;font-weight:500;border:1.5px solid rgba(60,36,21,0.15);cursor:pointer;transition:border-color 0.25s,background 0.25s}
 .btn-ghost:hover{border-color:#3C2415;background:rgba(60,36,21,0.03)}
-.hero-visual{position:absolute;right:-60px;top:50%;transform:translateY(-50%);z-index:0;opacity:0.12;pointer-events:none}
-.hero-visual .book-stack{font-size:18rem;line-height:0.75;font-family:'Fraunces',serif;font-weight:800;color:#3C2415;user-select:none;white-space:nowrap}
 
 /* ===== SECTION HEADERS ===== */
 .section-header{text-align:center;margin-bottom:64px}
@@ -63,13 +61,65 @@ a{color:inherit;text-decoration:none}
 .section-header h2{font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.2;color:#3C2415}
 .section-header p{color:#6B4F3A;font-size:1.05rem;margin-top:12px;max-width:500px;margin-left:auto;margin-right:auto}
 
+/* ===== EVENTS SCHEDULE ===== */
+.events{padding:100px 0;background:#FDF1DC}
+.events-controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:36px}
+.events-controls button{padding:8px 18px;border-radius:100px;border:1.5px solid rgba(60,36,21,0.12);background:transparent;color:#6B4F3A;font-size:0.85rem;cursor:pointer;transition:all 0.2s;font-family:inherit}
+.events-controls button.active,.events-controls button:hover{background:#3C2415;color:#FEF9F0;border-color:#3C2415}
+.event-day{margin-bottom:32px;background:#FEF9F0;border-radius:16px;overflow:hidden;transition:box-shadow 0.3s}
+.event-day:hover{box-shadow:0 4px 20px rgba(60,36,21,0.06)}
+.event-day-header{display:flex;align-items:center;gap:14px;padding:16px 20px;cursor:pointer;user-select:none;transition:background 0.2s}
+.event-day-header:hover{background:rgba(247,179,43,0.05)}
+.event-day-header .date-box{width:52px;height:52px;border-radius:12px;background:#F7B32B;color:#3C2415;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;font-weight:700}
+.event-day-header .date-box .md{font-size:1.1rem;line-height:1}
+.event-day-header .date-box .dow{font-size:0.7rem;line-height:1;margin-top:2px;opacity:0.8}
+.event-day-header .day-info{flex:1;min-width:0}
+.event-day-header .day-info .count{font-weight:600;font-size:0.95rem;color:#3C2415}
+.event-day-header .day-info .sub{font-size:0.78rem;color:#8B7562;margin-top:2px}
+.event-day-header .arrow{font-size:0.8rem;color:#8B7562;transition:transform 0.3s}
+.event-day.open .event-day-header .arrow{transform:rotate(180deg)}
+.event-day-body{display:none;padding:0 20px 16px}
+.event-day.open .event-day-body{display:block}
+.event-card{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border-radius:10px;transition:background 0.2s;border-bottom:1px solid rgba(60,36,21,0.04)}
+.event-card:last-child{border-bottom:none}
+.event-card:hover{background:rgba(247,179,43,0.06)}
+.event-card .district-tag{flex-shrink:0;padding:3px 10px;border-radius:6px;font-size:0.72rem;font-weight:600;white-space:nowrap}
+.district-tag.xuhui{background:rgba(30,71,54,0.12);color:#1E4736}
+.district-tag.huangpu{background:rgba(232,133,61,0.15);color:#C56A22}
+.district-tag.pudong{background:rgba(66,133,244,0.12);color:#2D6AD4}
+.district-tag.jingan{background:rgba(154,84,208,0.12);color:#8C3CC0}
+.district-tag.yangpu{background:rgba(38,166,154,0.12);color:#1A8A7D}
+.district-tag.hongkou{background:rgba(236,64,122,0.12);color:#D13B6B}
+.event-card .event-title{font-size:0.9rem;color:#3C2415;line-height:1.5}
+.events-load-more{text-align:center;margin-top:24px}
+.events-load-more button{padding:10px 28px;border-radius:100px;border:1.5px solid rgba(60,36,21,0.15);background:transparent;color:#3C2415;font-size:0.9rem;cursor:pointer;transition:all 0.2s;font-family:inherit}
+.events-load-more button:hover{background:#3C2415;color:#FEF9F0}
+
+/* ===== GALLERY ===== */
+.gallery-section{padding:100px 0}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.gallery-item{border-radius:14px;overflow:hidden;cursor:pointer;aspect-ratio:1;background:#FDF1DC;transition:transform 0.3s,box-shadow 0.3s;position:relative}
+.gallery-item:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(60,36,21,0.12)}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s}
+.gallery-item:hover img{transform:scale(1.05)}
+
+/* Lightbox */
+.lightbox{position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.92);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s}
+.lightbox.open{opacity:1;pointer-events:auto}
+.lightbox img{max-width:90vw;max-height:90vh;border-radius:8px;object-fit:contain}
+.lightbox-close{position:absolute;top:20px;right:24px;color:#fff;font-size:2rem;cursor:pointer;background:none;border:none;z-index:1;padding:8px}
+.lightbox-prev,.lightbox-next{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:2rem;cursor:pointer;background:rgba(255,255,255,0.1);border:none;padding:16px 12px;border-radius:8px;transition:background 0.2s}
+.lightbox-prev:hover,.lightbox-next:hover{background:rgba(255,255,255,0.2)}
+.lightbox-prev{left:20px}
+.lightbox-next{right:20px}
+
 /* ===== ABOUT ===== */
-.about{padding:100px 0;position:relative}
+.about{padding:100px 0;position:relative;background:#FDF1DC}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
 .about-text h2{font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.2;margin-bottom:20px}
 .about-text p{color:#6B4F3A;font-size:1.05rem;line-height:1.8;margin-bottom:12px}
 .about-visual{position:relative}
-.about-card{background:#FDF1DC;border-radius:20px;padding:32px;position:relative;overflow:hidden}
+.about-card{background:#FEF9F0;border-radius:20px;padding:32px;position:relative;overflow:hidden}
 .about-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#F7B32B,#E8853D);border-radius:0 0 4px 4px}
 .about-stat{text-align:center}
 .about-stat .num{font-family:'Fraunces',serif;font-size:3rem;font-weight:800;color:#3C2415;line-height:1}
@@ -77,9 +127,9 @@ a{color:inherit;text-decoration:none}
 .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
 
 /* ===== ACTIVITIES ===== */
-.activities{padding:100px 0;background:#FDF1DC}
+.activities{padding:100px 0}
 .activities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.activity-card{background:#FEF9F0;border-radius:18px;padding:32px 28px;transition:transform 0.3s,box-shadow 0.3s;position:relative;overflow:hidden;cursor:default}
+.activity-card{background:#FDF1DC;border-radius:18px;padding:32px 28px;transition:transform 0.3s,box-shadow 0.3s;position:relative;overflow:hidden;cursor:default}
 .activity-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(60,36,21,0.08)}
 .activity-card .icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:18px;font-weight:700;font-family:'Fraunces',serif}
 .activity-card:nth-child(1) .icon{background:rgba(247,179,43,0.18);color:#B87A10}
@@ -92,7 +142,7 @@ a{color:inherit;text-decoration:none}
 .activity-card p{color:#6B4F3A;font-size:0.9rem;line-height:1.6}
 
 /* ===== STATS BAR ===== */
-.stats-bar{padding:80px 0}
+.stats-bar{padding:80px 0;background:#FDF1DC}
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
 .stat-item .num{font-family:'Fraunces',serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:800;color:#3C2415;line-height:1.1}
 .stat-item .num .plus{color:#F7B32B}
@@ -140,18 +190,27 @@ a{color:inherit;text-decoration:none}
   .hero-blob.a{width:300px;height:300px;top:-20%;left:-30%}
   .hero-blob.b{width:250px;height:250px;bottom:-15%;right:-25%}
   .hero-blob.c{display:none}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
   .about-grid{grid-template-columns:1fr;gap:40px}
   .activities-grid{grid-template-columns:1fr}
   .stats-grid{grid-template-columns:1fr 1fr;gap:28px}
   .values-grid{grid-template-columns:1fr}
   .section-header{margin-bottom:40px}
-  .about,.activities,.stats-bar,.values,.cta-section{padding:60px 0}
+  .events,.about,.activities,.stats-bar,.values,.cta-section,.gallery-section{padding:60px 0}
+  .lightbox-prev,.lightbox-next{font-size:1.5rem;padding:12px 8px}
 }
 @media(max-width:480px){
   .hero-actions{flex-direction:column}
   .btn-primary,.btn-ghost{justify-content:center;text-align:center}
   .stats-grid{grid-template-columns:1fr 1fr;gap:24px}
   .cta-qr{flex-direction:column;gap:24px}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .event-day-header{padding:12px 14px}
+  .event-day-header .date-box{width:44px;height:44px;border-radius:10px}
+  .event-day-body{padding:0 12px 12px}
+  .event-card{padding:10px 8px;gap:8px}
+  .event-card .event-title{font-size:0.82rem}
+  .events-controls button{font-size:0.75rem;padding:6px 12px}
 }
 </style>
 </head>
@@ -172,9 +231,6 @@ a{color:inherit;text-decoration:none}
     <div class="hero-blob b"></div>
     <div class="hero-blob c"></div>
   </div>
-  <div class="hero-visual">
-    <div class="book-stack">📚</div>
-  </div>
   <div class="container">
     <div class="hero-tag reveal">
       <span class="live-dot"></span> 上海 · 每周50+场活动
@@ -182,11 +238,47 @@ a{color:inherit;text-decoration:none}
     <h1 class="display reveal">猴书<span class="accent">Club</span></h1>
     <p class="hero-lead reveal">和一群有趣的人，读一本好书。<br>不刷短视频，不打游戏——只用阅读连接彼此。</p>
     <div class="hero-actions reveal">
-      <a href="#join" class="btn-primary">🐒 加入猴书Club</a>
-      <a href="#activities" class="btn-ghost">看看我们在做什么</a>
+      <a href="#events" class="btn-primary">🐒 查看近期活动</a>
+      <a href="#join" class="btn-ghost">加入我们</a>
     </div>
   </div>
 </section>
+
+<!-- EVENTS SCHEDULE -->
+<section class="events" id="events">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">活动预告 · 7月</span>
+      <h2 class="display-sm">130+ 场活动，总有一场适合你</h2>
+      <p>覆盖上海各区，每天都有新活动。点击日期查看详情👇</p>
+    </div>
+    <div class="events-controls reveal" id="district-filter"></div>
+    <div class="reveal" id="events-container"></div>
+    <div class="events-load-more reveal" id="load-more-wrap">
+      <button id="load-more-btn">展开更多活动 ↓</button>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">马楼book</span>
+      <h2 class="display-sm">翻书如翻山，一页一世界</h2>
+      <p>来自猴书Club的灵感之书——每一页都值得细品</p>
+    </div>
+    <div class="gallery-grid reveal" id="gallery-grid"></div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lb-close">&times;</button>
+  <button class="lightbox-prev" id="lb-prev">&lt;</button>
+  <button class="lightbox-next" id="lb-next">&gt;</button>
+  <img src="" alt="" id="lb-img">
+</div>
 
 <!-- ABOUT -->
 <section class="about" id="about">
@@ -201,22 +293,10 @@ a{color:inherit;text-decoration:none}
       <div class="about-visual reveal">
         <div class="about-card">
           <div class="about-stats">
-            <div class="about-stat">
-              <div class="num">50<span style="color:#F7B32B">+</span></div>
-              <div class="label">每周活动场次</div>
-            </div>
-            <div class="about-stat">
-              <div class="num">3000<span style="color:#F7B32B">+</span></div>
-              <div class="label">社群伙伴</div>
-            </div>
-            <div class="about-stat">
-              <div class="num">12</div>
-              <div class="label">覆盖上海各区</div>
-            </div>
-            <div class="about-stat">
-              <div class="num">180<span style="color:#F7B32B">+</span></div>
-              <div class="label">已读书目</div>
-            </div>
+            <div class="about-stat"><div class="num">50<span style="color:#F7B32B">+</span></div><div class="label">每周活动场次</div></div>
+            <div class="about-stat"><div class="num">3000<span style="color:#F7B32B">+</span></div><div class="label">社群伙伴</div></div>
+            <div class="about-stat"><div class="num">12</div><div class="label">覆盖上海各区</div></div>
+            <div class="about-stat"><div class="num">180<span style="color:#F7B32B">+</span></div><div class="label">已读书目</div></div>
           </div>
         </div>
       </div>
@@ -233,36 +313,12 @@ a{color:inherit;text-decoration:none}
       <p>从围坐共读到城市漫步，总有一种适合你的节奏</p>
     </div>
     <div class="activities-grid">
-      <div class="activity-card reveal">
-        <div class="icon">💬</div>
-        <h3>圆桌讨论</h3>
-        <p>围绕一本书展开深度对谈，每人都有发言权，碰撞不同视角的火花。</p>
-      </div>
-      <div class="activity-card reveal">
-        <div class="icon">📖</div>
-        <h3>沉浸共读</h3>
-        <p>选一个安静角落，和大家一起埋头读书。读完即刻分享，记忆加倍深刻。</p>
-      </div>
-      <div class="activity-card reveal">
-        <div class="icon">🚶</div>
-        <h3>Citywalk 读行</h3>
-        <p>用脚步丈量城市，在街角巷尾朗读一段文字。阅读不止在书桌前发生。</p>
-      </div>
-      <div class="activity-card reveal">
-        <div class="icon">🎬</div>
-        <h3>观影聊书</h3>
-        <p>从电影聊到原著，从画面回到文字。用影像打开一本书的另一种可能。</p>
-      </div>
-      <div class="activity-card reveal">
-        <div class="icon">🎤</div>
-        <h3>主题分享会</h3>
-        <p>每个成员都可以成为主讲人。你热爱的领域，就是最好的分享素材。</p>
-      </div>
-      <div class="activity-card reveal">
-        <div class="icon">🌿</div>
-        <h3>户外读书会</h3>
-        <p>公园草坪、滨江步道——在上海最美的角落，用书本连接自然与人。</p>
-      </div>
+      <div class="activity-card reveal"><div class="icon">💬</div><h3>圆桌讨论</h3><p>围绕一本书展开深度对谈，每人都有发言权，碰撞不同视角的火花。</p></div>
+      <div class="activity-card reveal"><div class="icon">📖</div><h3>沉浸共读</h3><p>选一个安静角落，和大家一起埋头读书。读完即刻分享，记忆加倍深刻。</p></div>
+      <div class="activity-card reveal"><div class="icon">🚶</div><h3>Citywalk 读行</h3><p>用脚步丈量城市，在街角巷尾朗读一段文字。阅读不止在书桌前发生。</p></div>
+      <div class="activity-card reveal"><div class="icon">🎬</div><h3>观影聊书</h3><p>从电影聊到原著，从画面回到文字。用影像打开一本书的另一种可能。</p></div>
+      <div class="activity-card reveal"><div class="icon">🎤</div><h3>主题分享会</h3><p>每个成员都可以成为主讲人。你热爱的领域，就是最好的分享素材。</p></div>
+      <div class="activity-card reveal"><div class="icon">🌿</div><h3>户外读书会</h3><p>公园草坪、滨江步道——在上海最美的角落，用书本连接自然与人。</p></div>
     </div>
   </div>
 </section>
@@ -275,22 +331,10 @@ a{color:inherit;text-decoration:none}
       <h2 class="display-sm">数字会说话</h2>
     </div>
     <div class="stats-grid">
-      <div class="stat-item reveal">
-        <div class="num">50<span class="plus">+</span></div>
-        <div class="label">每周活动场次</div>
-      </div>
-      <div class="stat-item reveal">
-        <div class="num">12</div>
-        <div class="label">覆盖上海各区</div>
-      </div>
-      <div class="stat-item reveal">
-        <div class="num">100<span class="plus">+</span></div>
-        <div class="label">行业背景的伙伴</div>
-      </div>
-      <div class="stat-item reveal">
-        <div class="num">0</div>
-        <div class="label">评判与说教</div>
-      </div>
+      <div class="stat-item reveal"><div class="num">50<span class="plus">+</span></div><div class="label">每周活动场次</div></div>
+      <div class="stat-item reveal"><div class="num">12</div><div class="label">覆盖上海各区</div></div>
+      <div class="stat-item reveal"><div class="num">100<span class="plus">+</span></div><div class="label">行业背景的伙伴</div></div>
+      <div class="stat-item reveal"><div class="num">0</div><div class="label">评判与说教</div></div>
     </div>
   </div>
 </section>
@@ -304,36 +348,12 @@ a{color:inherit;text-decoration:none}
       <p>猴书Club 不只是一个读书会——它是一个让你成长的社群</p>
     </div>
     <div class="values-grid">
-      <div class="value-card reveal">
-        <span class="v-icon">🤝</span>
-        <h3>真诚无评判</h3>
-        <p>每个观点都被尊重。不管你读了多少书、什么专业背景，这里只有平等的交流，没有居高临下的说教。</p>
-      </div>
-      <div class="value-card reveal">
-        <span class="v-icon">🚀</span>
-        <h3>半年见成长</h3>
-        <p>系统化的阅读路径，让你半年内建立文学、历史、经济学的知识框架。不是碎片阅读，而是真正"啃"透一本书。</p>
-      </div>
-      <div class="value-card reveal">
-        <span class="v-icon">🌐</span>
-        <h3>跨行业社交</h3>
-        <p>程序员、设计师、医生、教师、自由职业者——每一次活动都是一次跨界交流。从一本书出发，连接到意想不到的人。</p>
-      </div>
-      <div class="value-card reveal">
-        <span class="v-icon">🎯</span>
-        <h3>自由选择</h3>
-        <p>你只参加自己感兴趣的书目。不强制、不打卡、不用社交压力。喜欢就来，每一场活动都是因为热爱而聚。</p>
-      </div>
-      <div class="value-card reveal">
-        <span class="v-icon">🏙️</span>
-        <h3>全城覆盖</h3>
-        <p>静安、徐汇、浦东、杨浦……活动遍布上海各区。不管你在哪里，总有一场离你很近。</p>
-      </div>
-      <div class="value-card reveal">
-        <span class="v-icon">💡</span>
-        <h3>输出倒逼输入</h3>
-        <p>每一次分享都是知识的再创造。半年后你会发现，那些你以为忘记的内容，已经变成了自己的语言。</p>
-      </div>
+      <div class="value-card reveal"><span class="v-icon">🤝</span><h3>真诚无评判</h3><p>每个观点都被尊重。不管你读了多少书、什么专业背景，这里只有平等的交流，没有居高临下的说教。</p></div>
+      <div class="value-card reveal"><span class="v-icon">🚀</span><h3>半年见成长</h3><p>系统化的阅读路径，让你半年内建立文学、历史、经济学的知识框架。不是碎片阅读，而是真正"啃"透一本书。</p></div>
+      <div class="value-card reveal"><span class="v-icon">🌐</span><h3>跨行业社交</h3><p>程序员、设计师、医生、教师、自由职业者——每一次活动都是一次跨界交流。从一本书出发，连接到意想不到的人。</p></div>
+      <div class="value-card reveal"><span class="v-icon">🎯</span><h3>自由选择</h3><p>你只参加自己感兴趣的书目。不强制、不打卡、不用社交压力。喜欢就来，每一场活动都是因为热爱而聚。</p></div>
+      <div class="value-card reveal"><span class="v-icon">🏙️</span><h3>全城覆盖</h3><p>静安、徐汇、浦东、杨浦……活动遍布上海各区。不管你在哪里，总有一场离你很近。</p></div>
+      <div class="value-card reveal"><span class="v-icon">💡</span><h3>输出倒逼输入</h3><p>每一次分享都是知识的再创造。半年后你会发现，那些你以为忘记的内容，已经变成了自己的语言。</p></div>
     </div>
   </div>
 </section>
@@ -351,21 +371,13 @@ a{color:inherit;text-decoration:none}
       <p>扫码关注小红书，或者添加微信，下一场活动等你来</p>
     </div>
     <div class="cta-qr reveal">
-      <div class="cta-qr-placeholder">
-        小红书<br>扫码关注<br>👇
-      </div>
+      <div class="cta-qr-placeholder">小红书<br>扫码关注<br>👇</div>
       <div class="cta-platforms">
-        <div class="cta-platform">
-          <span class="pf-icon xhs">📕</span>
-          <span>小红书搜索：<strong>猴书Club</strong></span>
-        </div>
-        <div class="cta-platform">
-          <span class="pf-icon wx">💬</span>
-          <span>评论区【猴书】加入</span>
-        </div>
+        <div class="cta-platform"><span class="pf-icon xhs">📕</span><span>小红书搜索：<strong>猴书Club</strong></span></div>
+        <div class="cta-platform"><span class="pf-icon wx">💬</span><span>评论区【猴书】加入</span></div>
       </div>
     </div>
-    <a href="#" class="btn-primary reveal" style="margin-top:16px">🐒 马上加入猴书Club</a>
+    <a href="#events" class="btn-primary reveal" style="margin-top:16px">🐒 查看近期活动</a>
   </div>
 </section>
 
@@ -378,33 +390,297 @@ a{color:inherit;text-decoration:none}
 </footer>
 
 <script>
-// Nav scroll effect
+// ===== DATA =====
+const EVENTS = [
+  {d:"07/04",w:"周六",r:"徐汇区",t:"永嘉路Citywalk: 洋房旧书与咖啡香的慢旅"},
+  {d:"07/04",w:"周六",r:"黄浦区",t:"90后老了，准备靠什么托底呢？"},
+  {d:"07/04",w:"周六",r:"浦东新区",t:"副业收入渠道大公开"},
+  {d:"07/04",w:"周六",r:"浦东新区",t:"从 MBTI 聊聊你的职业与工作风格"},
+  {d:"07/04",w:"周六",r:"杨浦区",t:"副业突围-兴趣变现"},
+  {d:"07/04",w:"周六",r:"杨浦区",t:"谁是卧底"},
+  {d:"07/04",w:"周六",r:"杨浦区",t:"人性阻力"},
+  {d:"07/04",w:"周六",r:"黄浦区",t:"从 MBTI 聊聊你的职业与工作风格"},
+  {d:"07/05",w:"周日",r:"黄浦区",t:"AI可做的流量密码"},
+  {d:"07/05",w:"周日",r:"徐汇区",t:"【上海文艺小众City walk】巨富长路线"},
+  {d:"07/05",w:"周日",r:"浦东新区",t:"想做到内核稳定，我们需要做什么"},
+  {d:"07/05",w:"周日",r:"浦东新区",t:"一起打掼蛋"},
+  {d:"07/05",w:"周日",r:"浦东新区",t:"致青春：那些藏在课本与时光里的成长感悟"},
+  {d:"07/05",w:"周日",r:"徐汇区",t:"爱从来不是一种使命"},
+  {d:"07/05",w:"周日",r:"静安区",t:"播客友友们的茶话会"},
+  {d:"07/06",w:"周一",r:"黄浦区",t:"普通人怎么通过自媒体逆袭搞钱"},
+  {d:"07/06",w:"周一",r:"杨浦区",t:"《高效能人士的七个习惯》"},
+  {d:"07/06",w:"周一",r:"静安区",t:"孤独经济"},
+  {d:"07/06",w:"周一",r:"徐汇区",t:"爱的语言：说对方能听懂的情话"},
+  {d:"07/07",w:"周二",r:"黄浦区",t:"《认知觉醒》探索自己：认知越清晰，行动越坚定"},
+  {d:"07/07",w:"周二",r:"杨浦区",t:"聊聊如何用DeepSeek变现"},
+  {d:"07/07",w:"周二",r:"黄浦区",t:"用Openclaw赚到第一桶金！"},
+  {d:"07/08",w:"周三",r:"杨浦区",t:"真本事：如何从会工作到会赚钱？"},
+  {d:"07/08",w:"周三",r:"静安区",t:"越"不贪"，越能赚长久的钱"},
+  {d:"07/08",w:"周三",r:"静安区",t:"如何优雅地教孩子"搞砸""},
+  {d:"07/08",w:"周三",r:"徐汇区",t:"《人呐》"},
+  {d:"07/09",w:"周四",r:"浦东新区",t:"月光：聊聊你曾经的那次"怦然心动""},
+  {d:"07/09",w:"周四",r:"杨浦区",t:"副业冷启动：从0到1获取你的第一批AI客户"},
+  {d:"07/09",w:"周四",r:"浦东新区",t:"学会"看不见"，我升职了"},
+  {d:"07/09",w:"周四",r:"黄浦区",t:"小狗钱钱"},
+  {d:"07/10",w:"周五",r:"静安区",t:"《被讨厌的勇气》：拥有被讨厌的勇气也是一种能力"},
+  {d:"07/10",w:"周五",r:"浦东新区",t:"职场"有效社交"：人脉是资产，还是负债？"},
+  {d:"07/10",w:"周五",r:"黄浦区",t:"《如何做到爱孩子，也被孩子爱》"},
+  {d:"07/10",w:"周五",r:"静安区",t:"步履所及，皆为难忘——旅游分享会"},
+  {d:"07/10",w:"周五",r:"杨浦区",t:"你是否是不敢"纯玩"的东亚人？如何跳出优绩主义的陷阱"},
+  {d:"07/11",w:"周六",r:"浦东新区",t:"戒手机七天，我治好了焦虑"},
+  {d:"07/11",w:"周六",r:"浦东新区",t:"恋爱是一种能力，你拥有吗"},
+  {d:"07/11",w:"周六",r:"浦东新区",t:"财富流-模拟人生"},
+  {d:"07/11",w:"周六",r:"黄浦区",t:"西岸滨江艺术秀带暴走Citywalk"},
+  {d:"07/11",w:"周六",r:"徐汇区",t:"微习惯的力量"},
+  {d:"07/11",w:"周六",r:"徐汇区",t:"【上海文艺小众City walk】新华路路线"},
+  {d:"07/11",w:"周六",r:"杨浦区",t:"谁是卧底"},
+  {d:"07/11",w:"周六",r:"徐汇区",t:"西岸滨江艺术秀带暴走Citywalk"},
+  {d:"07/11",w:"周六",r:"杨浦区",t:"真本事：如何从会工作到会赚钱？"},
+  {d:"07/11",w:"周六",r:"杨浦区",t:"聊聊如何利用主业增效副业"},
+  {d:"07/12",w:"周日",r:"浦东新区",t:"谁是卧底"},
+  {d:"07/12",w:"周日",r:"黄浦区",t:""情绪稳定"是一碗毒鸡汤吗"},
+  {d:"07/12",w:"周日",r:"浦东新区",t:"今天只谈钱：你会被金钱困住吗？"},
+  {d:"07/12",w:"周日",r:"虹口区",t:"【上海文艺小众City walk】北苏州河"},
+  {d:"07/12",w:"周日",r:"徐汇区",t:"听听老钱们都在干什么"},
+  {d:"07/12",w:"周日",r:"杨浦区",t:"消费降级下的"搞钱心理学" | 我们真的需要那么多东西吗？"},
+  {d:"07/12",w:"周日",r:"浦东新区",t:"OpenClaw变革局：职业与社会的未来十年"},
+  {d:"07/13",w:"周一",r:"黄浦区",t:"副业搭档避雷指南"},
+  {d:"07/13",w:"周一",r:"静安区",t:"亲密与独处：如何在关系中保持"自我"？"},
+  {d:"07/13",w:"周一",r:"静安区",t:"大道：段永平投资问答录"},
+  {d:"07/14",w:"周二",r:"徐汇区",t:"体面说不，远离职场PUA"},
+  {d:"07/14",w:"周二",r:"黄浦区",t:"勿执着：聊聊你的"放下""},
+  {d:"07/14",w:"周二",r:"黄浦区",t:"德尔菲神庙下的谈话：如何认识你自己？"},
+  {d:"07/14",w:"周二",r:"杨浦区",t:"聊聊"培养不拖延的小习惯"：不用逼自己，慢慢改变"},
+  {d:"07/15",w:"周三",r:"黄浦区",t:"不要完美主义，要完成主义"},
+  {d:"07/15",w:"周三",r:"杨浦区",t:"亲密博弈，如何平衡独立与牵绊"},
+  {d:"07/15",w:"周三",r:"静安区",t:"爱情之美，在于瞬间还是永恒？"},
+  {d:"07/15",w:"周三",r:"浦东新区",t:"《生死疲劳》"},
+  {d:"07/16",w:"周四",r:"浦东新区",t:"《人人都要学点劳动法》"},
+  {d:"07/16",w:"周四",r:"静安区",t:"冲突管理：如何"吵"出一个更亲密的关系"},
+  {d:"07/16",w:"周四",r:"浦东新区",t:"分享"情绪消费"记录：为开心花的钱值吗"},
+  {d:"07/16",w:"周四",r:"徐汇区",t:"《第二性》"},
+  {d:"07/17",w:"周五",r:"静安区",t:"时光倒流，你最想改变哪件事"},
+  {d:"07/17",w:"周五",r:"黄浦区",t:"Openclaw从入门到精通: 让龙虾真正帮你干活"},
+  {d:"07/17",w:"周五",r:"黄浦区",t:"如果可以给人生换个剧本，你会怎么选"},
+  {d:"07/17",w:"周五",r:"杨浦区",t:"破圈社交，让我们从孤岛到群岛"},
+  {d:"07/17",w:"周五",r:"浦东新区",t:"聊聊极简与长期主义"},
+  {d:"07/17",w:"周五",r:"静安区",t:"副业突围-流量破解指南"},
+  {d:"07/17",w:"周五",r:"徐汇区",t:"高情商不是会说，是会闲聊"},
+  {d:"07/18",w:"周六",r:"浦东新区",t:"告别拿时间换钱｜普通人构建收入金字塔的思路"},
+  {d:"07/18",w:"周六",r:"徐汇区",t:"【上海半日闲】巨富长—梧桐深处的沪上风华"},
+  {d:"07/18",w:"周六",r:"浦东新区",t:"如何用闲置资源搞副业"},
+  {d:"07/18",w:"周六",r:"浦东新区",t:"识人术|如何快速看清一个人"},
+  {d:"07/18",w:"周六",r:"浦东新区",t:"财富流-模拟人生"},
+  {d:"07/18",w:"周六",r:"杨浦区",t:"谁是卧底"},
+  {d:"07/18",w:"周六",r:"黄浦区",t:"《认知觉醒》"},
+  {d:"07/18",w:"周六",r:"浦东新区",t:"普通人能否现在开始用OpenClaw？"},
+  {d:"07/18",w:"周六",r:"杨浦区",t:"高情商不是会说，是会闲聊"},
+  {d:"07/19",w:"周日",r:"浦东新区",t:"世界是个草台班子，聊聊对他人"祛魅""},
+  {d:"07/19",w:"周日",r:"徐汇区",t:"【上海经典City walk】武康路 X 安福路"},
+  {d:"07/19",w:"周日",r:"黄浦区",t:"物归缘主--物品/故事分享会"},
+  {d:"07/19",w:"周日",r:"浦东新区",t:""天黑请闭眼"——狼人杀桌游"},
+  {d:"07/19",w:"周日",r:"静安区",t:"【上海citywalk】奢街食光·南京西路慢旅"},
+  {d:"07/19",w:"周日",r:"静安区",t:"苏河左岸漫游：2km小塞纳文艺光影线"},
+  {d:"07/19",w:"周日",r:"徐汇区",t:"AI可做的流量密码"},
+  {d:"07/19",w:"周日",r:"徐汇区",t:"《一个人的疗愈》"},
+  {d:"07/19",w:"周日",r:"杨浦区",t:"《被讨厌的勇气》：拥有被讨厌的勇气也是一种能力"},
+  {d:"07/20",w:"周一",r:"黄浦区",t:"那些冷门但刚需的副业"},
+  {d:"07/20",w:"周一",r:"浦东新区",t:"一人公司×OpenClaw：从"单打独斗"到"AI 团队"的进阶之路"},
+  {d:"07/20",w:"周一",r:"静安区",t:"合伙创业最大的雷区：股权、分工、利益怎么平衡？"},
+  {d:"07/20",w:"周一",r:"黄浦区",t:"如果你自己是一个公司，你会怎么运营这家公司？"},
+  {d:"07/21",w:"周二",r:"静安区",t:"亲密关系里的"舒服区"：不委屈自己，也不冷落对方"},
+  {d:"07/21",w:"周二",r:"杨浦区",t:"有浏览没成交、有粉丝没转化，拆解真实获客痛点"},
+  {d:"07/21",w:"周二",r:"徐汇区",t:"职场如后宫｜如何平衡人际关系"},
+  {d:"07/22",w:"周三",r:"杨浦区",t:"性别互换恋爱实验 ：换个性别，我会怎么爱？"},
+  {d:"07/22",w:"周三",r:"静安区",t:"如何度过奥德赛时期"},
+  {d:"07/22",w:"周三",r:"黄浦区",t:"如何获得高配得感和幸福感"},
+  {d:"07/22",w:"周三",r:"浦东新区",t:"《第二性》"},
+  {d:"07/22",w:"周三",r:"杨浦区",t:"面对变化的世界，你的坐标系是什么？"},
+  {d:"07/23",w:"周四",r:"浦东新区",t:"办公室阴招，不用，得防"},
+  {d:"07/23",w:"周四",r:"浦东新区",t:"聊聊把兴趣做成副业的故事"},
+  {d:"07/23",w:"周四",r:"静安区",t:"破圈社交，让我们从孤岛到群岛"},
+  {d:"07/23",w:"周四",r:"徐汇区",t:"会用副业比会工作更重要"},
+  {d:"07/24",w:"周五",r:"静安区",t:"我的消费人格"},
+  {d:"07/24",w:"周五",r:"杨浦区",t:"聊聊自媒体与写作"},
+  {d:"07/24",w:"周五",r:"静安区",t:"OpenClaw终极拷问：效率神器还是安全灾难？"},
+  {d:"07/24",w:"周五",r:"黄浦区",t:"《关键对话》"},
+  {d:"07/24",w:"周五",r:"浦东新区",t:"往事越千年：聊聊对你影响最大的历史人物"},
+  {d:"07/24",w:"周五",r:"杨浦区",t:"聊聊副业赛道的红海与蓝海"},
+  {d:"07/24",w:"周五",r:"黄浦区",t:"微习惯的力量"},
+  {d:"07/25",w:"周六",r:"浦东新区",t:"财富流-模拟人生"},
+  {d:"07/25",w:"周六",r:"徐汇区",t:"《一句顶一万句》"},
+  {d:"07/25",w:"周六",r:"浦东新区",t:"如何向AI提问"},
+  {d:"07/25",w:"周六",r:"杨浦区",t:"谁是卧底"},
+  {d:"07/25",w:"周六",r:"静安区",t:"【上海文艺小众City walk】北苏州河"},
+  {d:"07/25",w:"周六",r:"杨浦区",t:"提升人生的掌控力，我们该做什么"},
+  {d:"07/25",w:"周六",r:"杨浦区",t:"聊聊相亲遇到的奇葩事"},
+  {d:"07/25",w:"周六",r:"杨浦区",t:"沟通心法:搞定难搞的同事"},
+  {d:"07/26",w:"周日",r:"虹口区",t:"【上海最甜City walk】甜爱路 X 多伦多路"},
+  {d:"07/26",w:"周日",r:"杨浦区",t:"如果你自己是一个公司，你会怎么运营这家公司？"},
+  {d:"07/26",w:"周日",r:"黄浦区",t:"职场晋升的"隐性准备"：不只是拼能力，细节也重要"},
+  {d:"07/26",w:"周日",r:"黄浦区",t:"聊聊副业怎么控制试错成本"},
+  {d:"07/26",w:"周日",r:"杨浦区",t:"《亲密关系》：爱与被爱都是一项需要学习的技能"},
+  {d:"07/26",w:"周日",r:"浦东新区",t:"一起玩UNO!"},
+  {d:"07/26",w:"周日",r:"浦东新区",t:"拥抱自己：在"钝感"与"敏感"之间寻找平衡"},
+  {d:"07/26",w:"周日",r:"浦东新区",t:"《贫穷的本质》"},
+  {d:"07/26",w:"周日",r:"徐汇区",t:"AI漫剧副业变现分享会"},
+  {d:"07/27",w:"周一",r:"黄浦区",t:"聊聊如何利用AI辅助副业"},
+  {d:"07/27",w:"周一",r:"徐汇区",t:"聊聊你庆幸记录下来了的那些时刻"},
+  {d:"07/27",w:"周一",r:"静安区",t:"AI小生意冷启动：如何用低成本拿下第一批客户"},
+  {d:"07/27",w:"周一",r:"杨浦区",t:"搞钱 | 长期主义 vs 短期投机"},
+  {d:"07/28",w:"周二",r:"黄浦区",t:"停下工作向内看:问自己十个问题"},
+  {d:"07/28",w:"周二",r:"杨浦区",t:"斯坦福高效睡眠法"},
+  {d:"07/28",w:"周二",r:"浦东新区",t:"聊聊"职场羞耻症""},
+  {d:"07/29",w:"周三",r:"杨浦区",t:"聊聊"高能量体质"：是天赋还是选择？"},
+  {d:"07/29",w:"周三",r:"静安区",t:"如何做到：人生不设限～"},
+  {d:"07/29",w:"周三",r:"静安区",t:"理财经验局|普通人如何理财"},
+  {d:"07/30",w:"周四",r:"徐汇区",t:"生活断舍离：不止扔东西，更是整理内心"},
+  {d:"07/30",w:"周四",r:"浦东新区",t:"聊聊"职场羞耻症""},
+  {d:"07/30",w:"周四",r:"浦东新区",t:"我的新同事是ChatGPT"},
+  {d:"07/30",w:"周四",r:"黄浦区",t:"想做到内核稳定，我们需要做什么"},
+  {d:"07/30",w:"周四",r:"杨浦区",t:"AI副业第一课：从"玩工具"到"搞生产""},
+  {d:"07/31",w:"周五",r:"静安区",t:"聊聊陪伴你走过青春的动漫"},
+  {d:"07/31",w:"周五",r:"杨浦区",t:"聊聊"高能量体质"：是天赋还是选择？"},
+  {d:"07/31",w:"周五",r:"黄浦区",t:"我的独居生活"}
+];
+
+const GALLERY_IMGS = [
+  "1280X1280.JPEG","1280X1280_(1).JPEG","1280X1280_(2).JPEG","1280X1280_(3).JPEG",
+  "1280X1280_(4).JPEG","1280X1280_(5).JPEG","1280X1280_(6).JPEG","1280X1280_(7).JPEG",
+  "1280X1280_(8).JPEG","1280X1280_(9).JPEG","1280X1280_(10).JPEG","1280X1280_(11).JPEG",
+  "1280X1280_(12).JPEG","103011781171238_.pic_hd.jpg"
+];
+
+const DISTRICT_MAP = {
+  "徐汇区":"xuhui","黄浦区":"huangpu","浦东新区":"pudong",
+  "静安区":"jingan","杨浦区":"yangpu","虹口区":"hongkou"
+};
+const DISTRICTS = ["全部","徐汇区","黄浦区","浦东新区","静安区","杨浦区","虹口区"];
+
+// ===== GROUP EVENTS BY DATE =====
+const grouped = {};
+EVENTS.forEach(e => {
+  const key = e.d+" "+e.w;
+  if(!grouped[key]) grouped[key] = {date:e.d,dow:e.w,items:[]};
+  grouped[key].items.push(e);
+});
+const DAYS = Object.values(grouped);
+
+// ===== DISTRICT FILTER =====
+let activeDistrict = "全部";
+function renderFilters(){
+  const wrap = document.getElementById('district-filter');
+  wrap.innerHTML = DISTRICTS.map(d =>
+    `<button class="${d===activeDistrict?'active':''}" onclick="filterDistrict('${d}')">${d}</button>`
+  ).join('');
+}
+renderFilters();
+
+window.filterDistrict = function(d){
+  activeDistrict = d;
+  renderFilters();
+  renderEvents();
+};
+
+// ===== RENDER EVENTS =====
+const INITIAL_SHOW = 7;
+let showCount = INITIAL_SHOW;
+
+function renderEvents(){
+  const container = document.getElementById('events-container');
+  const loadWrap = document.getElementById('load-more-wrap');
+  let filtered = DAYS;
+  if(activeDistrict !== '全部'){
+    filtered = DAYS.map(day => ({
+      ...day,
+      items: day.items.filter(e => e.r === activeDistrict)
+    })).filter(day => day.items.length > 0);
+  }
+
+  const visible = filtered.slice(0, showCount);
+  container.innerHTML = visible.map((day,i) => {
+    const open = i < 3 ? ' open' : '';
+    return `
+    <div class="event-day${open}">
+      <div class="event-day-header" onclick="toggleDay(this)">
+        <div class="date-box"><span class="md">${day.date}</span><span class="dow">${day.dow}</span></div>
+        <div class="day-info">
+          <div class="count">${day.items.length} 场活动</div>
+          <div class="sub">${[...new Set(day.items.map(e=>e.r))].join(' · ')}</div>
+        </div>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="event-day-body">
+        ${day.items.map(e => `
+        <div class="event-card">
+          <span class="district-tag ${DISTRICT_MAP[e.r]||''}">${e.r}</span>
+          <span class="event-title">${e.t}</span>
+        </div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+
+  if(showCount >= filtered.length){
+    loadWrap.style.display = 'none';
+  } else {
+    loadWrap.style.display = 'block';
+  }
+}
+renderEvents();
+
+window.toggleDay = function(header){
+  header.parentElement.classList.toggle('open');
+};
+
+document.getElementById('load-more-btn').addEventListener('click',()=>{
+  showCount += 14;
+  const allDays = (activeDistrict==='全部'?DAYS:DAYS.map(day=>({...day,items:day.items.filter(e=>e.r===activeDistrict)})).filter(day=>day.items.length>0));
+  if(showCount >= allDays.length) showCount = allDays.length;
+  renderEvents();
+});
+
+// ===== GALLERY =====
+const galleryGrid = document.getElementById('gallery-grid');
+galleryGrid.innerHTML = GALLERY_IMGS.map((img,i) =>
+  `<div class="gallery-item" onclick="openLightbox(${i})">
+    <img src="images/${img}" alt="马楼book" loading="lazy">
+  </div>`
+).join('');
+
+// ===== LIGHTBOX =====
+let lbIdx = 0;
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lb-img');
+
+window.openLightbox = function(i){
+  lbIdx = i; lbImg.src = 'images/'+GALLERY_IMGS[i]; lb.classList.add('open');
+};
+document.getElementById('lb-close').addEventListener('click',()=>lb.classList.remove('open'));
+document.getElementById('lb-prev').addEventListener('click',()=>{
+  lbIdx = (lbIdx-1+GALLERY_IMGS.length)%GALLERY_IMGS.length;
+  lbImg.src = 'images/'+GALLERY_IMGS[lbIdx];
+});
+document.getElementById('lb-next').addEventListener('click',()=>{
+  lbIdx = (lbIdx+1)%GALLERY_IMGS.length;
+  lbImg.src = 'images/'+GALLERY_IMGS[lbIdx];
+});
+lb.addEventListener('click',function(e){if(e.target===lb)lb.classList.remove('open')});
+document.addEventListener('keydown',function(e){
+  if(!lb.classList.contains('open'))return;
+  if(e.key==='Escape')lb.classList.remove('open');
+  if(e.key==='ArrowLeft'){lbIdx=(lbIdx-1+GALLERY_IMGS.length)%GALLERY_IMGS.length;lbImg.src='images/'+GALLERY_IMGS[lbIdx];}
+  if(e.key==='ArrowRight'){lbIdx=(lbIdx+1)%GALLERY_IMGS.length;lbImg.src='images/'+GALLERY_IMGS[lbIdx];}
+});
+
+// ===== NAV SCROLL =====
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
-});
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>60)});
 
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Smooth scroll for anchor links (fallback for older browsers)
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
+// ===== SCROLL REVEAL =====
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible')});
+},{threshold:0.15,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 </script>
 </body>
 </html>
